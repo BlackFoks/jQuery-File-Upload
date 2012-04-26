@@ -318,6 +318,12 @@
         },
 
         _hasError: function (file) {
+            // Accepteed file types should be unique for each uploader even if
+            // they are processing the same file, so we need to recheck it.
+            if (file.error == 'acceptFileTypes') {
+                file.error = undefined;
+            }
+
             if (file.error) {
                 return file.error;
             }
